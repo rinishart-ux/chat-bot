@@ -5,6 +5,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 
 from handlers.intents import handle_intents
 from handlers.basic import fallback_answer
+from calculator import number
 
 load_dotenv()
 
@@ -19,7 +20,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         response = fallback_answer(text)
 
     await update.message.reply_text(response)
-
+    
+    random_number = number()
+    print (random_number)
+    await update.message.reply_text(f"Твой код: {random_number}")
+    
 
 app = ApplicationBuilder().token(TOKEN).build()
 
